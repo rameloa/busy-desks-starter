@@ -1,0 +1,12 @@
+{
+  "_about": "Your office's settings (SETUP.md, step 1). scripts/render.mjs fills templates/ with these values; scripts/build-office.mjs fills the office page; scripts/new-office.mjs fills your setup kit. desk is the id of your desk (desk_items.for_agent): lowercase, no spaces. No secrets here: ids and names only.",
+  "owner": "Sam",
+  "desk": "sam",
+  "gmail": "sam@example.com",
+  "city": "Lisbon",
+  "timezone": "Europe/Lisbon",
+  "currency": "EUR",
+  "supabase_project": "your-project-id",
+  "claude_project": "Busy Desks",
+  "office_url": "https://claude.ai/artifact/your-office"
+}

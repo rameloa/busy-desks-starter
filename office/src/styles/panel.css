@@ -1,0 +1,102 @@
+/* ---------- side panel / bottom sheet ---------- */
+.drawer{position:absolute;right:16px;top:var(--panelTop,140px);bottom:16px;z-index:28;width:380px;max-width:calc(100% - 32px);display:flex;flex-direction:column;background:var(--surface);color:var(--ink);box-shadow:0 0 0 2px var(--line),0 6px 0 var(--line),0 18px 40px var(--shadow);animation:slidein .35s ease}
+.drawer[hidden]{display:none}
+@keyframes slidein{from{transform:translateX(30px);opacity:0}to{transform:none;opacity:1}}
+/* No tab row inside the panel: the top bar switches panels. Just a close button in the corner (and a pull handle on phones). */
+.xbtn{position:absolute;top:10px;right:10px;z-index:2;width:40px;height:40px;border:0;background:var(--surface-2);color:var(--ink);display:grid;place-items:center}
+.grab{display:none}
+.dbody{flex:1;overflow:auto;padding:16px 16px 18px}
+.dbody > section > .h2row:first-child,.dbody > section > .info-name{padding-right:48px;min-height:30px}
+.dbody > section[hidden]{display:none}
+h2{font:700 20px/1.2 var(--display);margin:0}
+.h2row{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:2px 10px;margin-bottom:10px}
+.hint{font-size:13px;color:var(--muted);margin:0}
+.btn{background:var(--accent);color:var(--accent-ink);border:0;padding:9px 14px;font:600 14px/1.1 var(--display);box-shadow:inset 2px 2px 0 rgba(255,255,255,.2),inset -2px -3px 0 rgba(0,0,0,.25)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--line)}
+.btn:disabled{opacity:.5;cursor:default}
+.tabs.seg{box-shadow:none;gap:4px;margin-bottom:10px}
+.tabs.seg button{background:var(--surface-2);color:var(--muted);min-height:36px}
+.tabs.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.info-name{font-weight:800;font-size:16px}
+.info-role{color:var(--muted);font-size:14px;margin:2px 0 0}
+.info-head{display:flex;align-items:center;gap:10px;font:700 22px/1.1 var(--display)}
+.info-head .av2{flex:none;width:40px;height:40px;display:grid;place-items:center;color:#fff;font:700 18px/1 var(--display)}
+.info-head .job{display:block;font:700 13px/1.3 var(--body);color:var(--muted)}
+.facts{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;margin:10px 0 0;font-size:13.5px}
+.facts dt{color:var(--muted);font-weight:700}
+.facts dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.actions{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.actions .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.actions .btn.confirm{background:var(--sel);color:#2B1D0E}
+.actions .say{font-size:13px;color:var(--muted)}
+.actions .say b{color:var(--ink)}
+.actions .msg{font-size:13px;font-weight:700}
+.actions .msg.ok{color:var(--ok)} .actions .msg.bad{color:var(--danger)}
+.trays{display:flex;flex-direction:column;gap:10px}
+.tray{background:var(--surface-2);padding:10px;min-width:0}
+.tray-h{display:flex;justify-content:space-between;align-items:center;font:600 13px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.tray-h .n{font-size:18px;letter-spacing:0}
+.tray[data-k="act"] .tray-h{color:var(--act)} .tray[data-k="review"] .tray-h{color:var(--review)} .tray[data-k="fyi"] .tray-h{color:var(--fyi)}
+.cards{display:flex;flex-direction:column;gap:8px}
+.card{background:var(--surface);box-shadow:0 0 0 2px var(--line);padding:8px 10px}
+.card-t{font-weight:800;font-size:14px;overflow-wrap:anywhere}
+.card-d{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+.card-s{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.empty{font-size:13px;color:var(--muted);padding:4px 2px}
+.card-b{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.card-b button{min-height:36px;padding:0 12px;font-size:13px}
+.card-b .msg{flex-basis:100%;font-size:12.5px;font-weight:700}
+.card.gone{opacity:.45;pointer-events:none}
+.snoozed{font-size:12.5px;color:var(--muted);margin-top:8px}
+.chain{margin-top:14px;padding-top:10px;border-top:2px dashed var(--line);display:flex;flex-direction:column;gap:6px}
+.chain-h{display:flex;justify-content:space-between;align-items:center;font:600 13px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.chain-h .n{font-size:18px;letter-spacing:0}
+.chain-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.chain-list li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:baseline;font-size:13.5px;padding:6px 0;border-bottom:1px solid var(--surface-2)}
+.chain-list li:last-child{border-bottom:0}
+.chain-list .t{font-weight:800;min-width:0;overflow-wrap:anywhere}
+.chain-list .route{font-size:12px;color:var(--muted);white-space:nowrap}
+.chain-list .route b{color:var(--warn);font-weight:800}
+.log{list-style:none;margin:0;padding:0;font-family:var(--mono);font-size:12.5px;display:flex;flex-direction:column}
+.log li{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:8px;align-items:baseline;padding:6px 0;border-bottom:1px dashed var(--surface-2)}
+.log time{color:var(--muted);white-space:nowrap}
+.log .chip{font-weight:600;white-space:nowrap}
+.log .msg{min-width:0;overflow-wrap:anywhere}
+.log li.fail .msg{color:var(--danger)}
+.log .why,.tl .why{display:block;color:var(--muted);font-family:var(--body);font-size:12.5px;font-style:italic}
+.tl{margin-top:12px;padding-top:10px;border-top:2px dashed var(--line)}
+.tl-h{font:600 13px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.tl ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.tl li{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:4px 8px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--surface-2);font-size:13.5px}
+.tl li:last-child{border-bottom:0}
+.tl time{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
+.tl .k{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:1px 7px;box-shadow:inset 0 0 0 1.5px currentColor;color:var(--muted);white-space:nowrap}
+.tl .k[data-k="found"],.tl .k[data-k="handoff"],.tl .k[data-k="report"],.tl .k[data-k="deliver"]{color:var(--accent)}
+.tl .k[data-k="done"]{color:var(--ok)} .tl .k[data-k="fail"]{color:var(--danger)}
+.tl .m{min-width:0;overflow-wrap:anywhere}
+.tl .dat{display:block;font-family:var(--mono);font-size:11.5px;color:var(--muted);overflow-wrap:anywhere;margin-top:2px}
+.tl .dat a{color:var(--accent)}
+.goals,.budgets{list-style:none;margin:0 0 10px;padding:0}
+.goals li{padding:9px 0;border-bottom:1px solid var(--surface-2);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;align-items:start}
+.goals .gt{font-weight:800;font-size:14.5px;overflow-wrap:anywhere}
+.goals .gs{font-size:13px;color:var(--muted);grid-column:1/-1;overflow-wrap:anywhere}
+.goals .gn{font-size:13px;grid-column:1/-1;overflow-wrap:anywhere}
+.goals .gb{grid-column:1/-1;display:flex;gap:8px;margin-top:4px}
+.goals .gb button{font-size:13px;padding:5px 10px}
+.goals .kindh{display:block;grid-column:1/-1;font:600 12px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:0;padding:8px 0 0}
+.chip-s{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;box-shadow:inset 0 0 0 1.5px currentColor;white-space:nowrap;color:var(--muted)}
+.chip-s[data-s="on_track"],.chip-s[data-s="met"]{color:var(--ok)} .chip-s[data-s="at_risk"]{color:var(--warn)} .chip-s[data-s="off_track"]{color:var(--danger)}
+.gform{display:flex;flex-direction:column;gap:10px;background:var(--surface-2);padding:12px;margin-top:10px}
+.gform .gf-h{font:700 17px/1.2 var(--display)}
+.gform label{display:flex;flex-direction:column;gap:3px;font-size:13px;font-weight:700;color:var(--muted);min-width:0;flex:1}
+.gform input,.gform select,.budgets input{font:inherit;font-size:16px;color:var(--ink);background:var(--surface);border:0;box-shadow:inset 0 0 0 2px var(--line);padding:8px 10px;width:100%;min-width:0}
+.gform .gf-row{display:flex;gap:10px}
+.gform .row{display:flex;gap:8px;flex-wrap:wrap}
+.gform .msg,.budgets .msg{font-size:13px;font-weight:700}
+.msg.ok{color:var(--ok)} .msg.bad{color:var(--danger)}
+.budgets li{display:grid;grid-template-columns:minmax(0,1fr) 92px auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--surface-2)}
+.budgets .nm{font-weight:800;font-size:14px}
+.budgets .sub{font-size:12.5px;color:var(--muted)}
+.budgets .msg{grid-column:1/-1}
+.budgets button{font-size:13px;padding:7px 10px}
+

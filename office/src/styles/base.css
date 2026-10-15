@@ -1,0 +1,33 @@
+/* Layout: the 3D office fills the window. A game-style bar on top (status, tabs, trays, Replay), district chips under it,
+   the latest event bottom-left and the staff strip bottom-right. Your desk, the event stream, goals and agent cards open
+   in a side panel (a bottom sheet on phones). The floor is drawn from DOM boxes with CSS 3D (true 2:1 isometric). */
+:root{
+  --bg:#F7F5F0; --surface:#FFFFFF; --surface-2:#F0ECE3; --ink:#1F2421; --muted:#5C6660; --line:#1F2A24;
+  --accent:#006039; --accent-ink:#FFFFFF; --accent-soft:#DDEFE5;
+  --ok:#1E7A4B; --warn:#8F5B00; --danger:#B42318; --demo:#6B4FC8;
+  --act:#C2410C; --act-soft:#FFE5D8; --review:#8F5B00; --review-soft:#FFEFCB; --fyi:#1D63A8; --fyi-soft:#DFEDFB;
+  --hud:#00402A; --hud-2:#006039; --hud-ink:#F5F3EE; --hud-muted:#B9D6C6; --hud-edge:#00281A; --sel:#F2C230;
+  --sky:#DCE9EE; --screen:#7FD3FF; --skin:#E9B98C; --paper:#FFFFFF; --shadow:rgba(20,30,25,.18);
+  --px:repeating-conic-gradient(rgba(255,255,255,.07) 0 25%,transparent 0 50%) 0 0/8px 8px,repeating-conic-gradient(rgba(0,0,0,.05) 0 25%,transparent 0 50%) 2px 6px/12px 12px;
+  --display:'Pixelify Sans','Courier New',monospace;
+  --body:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#141917; --surface:#1E2421; --surface-2:#27302B; --ink:#EEF2EF; --muted:#A8B5AE; --line:#050806;
+  --accent:#5FD39A; --accent-ink:#06180F; --accent-soft:#1D3A2A; --ok:#5FD39A; --warn:#F2B84B; --danger:#FF7B6E; --demo:#B394F2;
+  --act:#FF8D5E; --act-soft:#47271A; --review:#F2B84B; --review-soft:#403119; --fyi:#7DBAF3; --fyi-soft:#1D3045;
+  --hud:#062619; --hud-2:#0C3D27; --hud-ink:#EEF2EF; --hud-muted:#9CC3AE; --hud-edge:#010D07; --sky:#101A22; --screen:#3FA9D6; --skin:#D9A87C; --paper:#E9E2D2; --shadow:rgba(0,0,0,.5);
+  color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#141917; --surface:#1E2421; --surface-2:#27302B; --ink:#EEF2EF; --muted:#A8B5AE; --line:#050806;
+  --accent:#5FD39A; --accent-ink:#06180F; --accent-soft:#1D3A2A; --ok:#5FD39A; --warn:#F2B84B; --danger:#FF7B6E; --demo:#B394F2;
+  --act:#FF8D5E; --act-soft:#47271A; --review:#F2B84B; --review-soft:#403119; --fyi:#7DBAF3; --fyi-soft:#1D3045;
+  --hud:#062619; --hud-2:#0C3D27; --hud-ink:#EEF2EF; --hud-muted:#9CC3AE; --hud-edge:#010D07; --sky:#101A22; --screen:#3FA9D6; --skin:#D9A87C; --paper:#E9E2D2; --shadow:rgba(0,0,0,.5);
+  color-scheme:dark }
+*{box-sizing:border-box}
+html,body{background:var(--sky);color:var(--ink);margin:0;padding:0}
+body{font-family:var(--body);font-size:15px;line-height:1.5;overflow:hidden}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2.5px solid var(--sel);outline-offset:2px}
+

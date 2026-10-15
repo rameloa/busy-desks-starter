@@ -1,0 +1,418 @@
+{
+ "_example": "EXAMPLE DATA ONLY. Made up for local development and screenshots; node scripts/build-office.mjs --dev bakes it into office/dev/index.html. The published page never reads this file.",
+ "departments": [
+  {
+   "id": "exec",
+   "name": "Executive",
+   "slot": 0,
+   "status": "live",
+   "color": "#B0569F",
+   "description": "Chief of Staff: morning brief, priorities, and your goals with weekly check-ins.",
+   "sort": 1
+  },
+  {
+   "id": "operations",
+   "name": "Operations",
+   "slot": 5,
+   "status": "live",
+   "color": "#2F64E0",
+   "description": "Inbox, calendar, home admin and travel.",
+   "sort": 3
+  },
+  {
+   "id": "it-audit",
+   "name": "Back Office",
+   "slot": 8,
+   "status": "live",
+   "color": "#5B6B78",
+   "description": "Internal IT, audit and costs.",
+   "sort": 8
+  }
+ ],
+ "agents": [
+  {
+   "id": "inbox",
+   "name": "Inbox Organizer",
+   "nickname": "Ollie",
+   "scheduled_task_id": "trig_example_inbox",
+   "department_id": "operations",
+   "role": "worker",
+   "reports_to": "executive",
+   "status": "live",
+   "schedule": "7:12 AM and 6:12 PM",
+   "station": "bins",
+   "seat": 0,
+   "color": "#2F64E0",
+   "description": "Example: labels new mail.",
+   "sort": 4,
+   "monthly_budget_usd": 15
+  },
+  {
+   "id": "executive",
+   "name": "Executive",
+   "nickname": "Iris",
+   "scheduled_task_id": "trig_example_exec",
+   "department_id": "exec",
+   "role": "executive",
+   "reports_to": null,
+   "status": "live",
+   "schedule": "Weekdays 7:41 AM",
+   "station": "desk",
+   "seat": 0,
+   "color": "#B0569F",
+   "description": "Example: files one morning brief.",
+   "sort": 5,
+   "monthly_budget_usd": 4
+  },
+  {
+   "id": "auditor",
+   "name": "Auditor",
+   "nickname": "Audrey",
+   "scheduled_task_id": "trig_example_audit",
+   "department_id": "it-audit",
+   "role": "worker",
+   "reports_to": "executive",
+   "status": "live",
+   "schedule": "Daily 7:31 AM",
+   "station": "desk",
+   "seat": 0,
+   "color": "#5B6B78",
+   "description": "Example: checks who ran.",
+   "sort": 6,
+   "monthly_budget_usd": 7
+  }
+ ],
+ "events": [
+  {
+   "id": 6,
+   "run_id": "r-ollie",
+   "created_at": "2026-10-14T11:12:00Z",
+   "agent": "inbox",
+   "team": "Operations",
+   "kind": "start",
+   "message": "Example: looking at new mail",
+   "why": null
+  },
+  {
+   "id": 7,
+   "run_id": "r-ollie",
+   "created_at": "2026-10-14T11:13:00Z",
+   "agent": "inbox",
+   "team": "Operations",
+   "kind": "work",
+   "message": "Example: sorting 12 emails",
+   "why": null
+  },
+  {
+   "id": 8,
+   "run_id": "r-ollie",
+   "created_at": "2026-10-14T11:14:00Z",
+   "agent": "inbox",
+   "team": "Operations",
+   "kind": "handoff",
+   "message": "Example: one needs you",
+   "why": null
+  },
+  {
+   "id": 9,
+   "run_id": "r-ollie",
+   "created_at": "2026-10-14T11:15:00Z",
+   "agent": "inbox",
+   "team": "Operations",
+   "kind": "done",
+   "message": "Example: run finished",
+   "why": null
+  },
+  {
+   "id": 14,
+   "run_id": "r-audrey",
+   "created_at": "2026-10-14T11:31:00Z",
+   "agent": "auditor",
+   "team": "Back Office",
+   "kind": "start",
+   "message": "Example: checking who ran",
+   "why": null
+  },
+  {
+   "id": 15,
+   "run_id": "r-audrey",
+   "created_at": "2026-10-14T11:32:00Z",
+   "agent": "auditor",
+   "team": "Back Office",
+   "kind": "report",
+   "message": "Example: everyone ran",
+   "why": null
+  },
+  {
+   "id": 16,
+   "run_id": "r-audrey",
+   "created_at": "2026-10-14T11:33:00Z",
+   "agent": "auditor",
+   "team": "Back Office",
+   "kind": "done",
+   "message": "Example: run finished",
+   "why": null
+  },
+  {
+   "id": 17,
+   "run_id": "r-iris",
+   "created_at": "2026-10-14T11:41:00Z",
+   "agent": "executive",
+   "team": "Executive",
+   "kind": "start",
+   "message": "Example: preparing the morning brief",
+   "why": null
+  },
+  {
+   "id": 18,
+   "run_id": "r-iris",
+   "created_at": "2026-10-14T11:42:00Z",
+   "agent": "executive",
+   "team": "Executive",
+   "kind": "work",
+   "message": "Example: all agents ran",
+   "why": null
+  },
+  {
+   "id": 19,
+   "run_id": "r-iris",
+   "created_at": "2026-10-14T11:44:00Z",
+   "agent": "executive",
+   "team": "Executive",
+   "kind": "report",
+   "message": "Example: sent 1 to Act now and 1 to Review",
+   "why": null
+  },
+  {
+   "id": 20,
+   "run_id": "r-iris",
+   "created_at": "2026-10-14T11:45:00Z",
+   "agent": "executive",
+   "team": "Executive",
+   "kind": "deliver",
+   "message": "Example: filed the brief on your desk",
+   "why": null
+  },
+  {
+   "id": 21,
+   "run_id": "r-iris",
+   "created_at": "2026-10-14T11:46:00Z",
+   "agent": "executive",
+   "team": "Executive",
+   "kind": "done",
+   "message": "Example: brief done",
+   "why": null
+  }
+ ],
+ "desk": [
+  {
+   "id": 103,
+   "run_id": "r-iris",
+   "created_at": "2026-10-14T11:45:00Z",
+   "source_agent": "executive",
+   "for_agent": "{{desk}}",
+   "briefed_run_id": "r-iris",
+   "tray": "fyi",
+   "title": "Example: morning brief",
+   "detail": "Example brief.",
+   "amount_cents": null,
+   "currency": null,
+   "due_date": null,
+   "status": "open",
+   "snoozed_until": null
+  }
+ ],
+ "goals": [
+  {
+   "id": 1,
+   "kind": "spending",
+   "title": "Example: keep food under $600 a month",
+   "amount_cents": 60000,
+   "currency": "CAD",
+   "pct": null,
+   "period": "month",
+   "target_date": null,
+   "category": "Food",
+   "note": null,
+   "watcher": "executive",
+   "status": "waiting",
+   "status_note": "Example: waiting for an agent to watch it.",
+   "rated_at": "2026-10-12T12:00:00Z"
+  },
+  {
+   "id": 2,
+   "kind": "bills",
+   "title": "Example: never pay a bill late",
+   "amount_cents": null,
+   "currency": "CAD",
+   "pct": null,
+   "period": "ongoing",
+   "target_date": null,
+   "category": null,
+   "note": null,
+   "watcher": "executive",
+   "status": "waiting",
+   "status_note": "Example: waiting for an agent to watch it.",
+   "rated_at": null
+  }
+ ],
+ "runs": [
+  {
+   "id": "r-ollie",
+   "agent": "inbox",
+   "status": "done",
+   "started_at": "2026-10-14T11:12:00Z",
+   "finished_at": "2026-10-14T11:15:00Z",
+   "tool_calls": 9
+  },
+  {
+   "id": "r-audrey",
+   "agent": "auditor",
+   "status": "done",
+   "started_at": "2026-10-14T11:31:00Z",
+   "finished_at": "2026-10-14T11:33:00Z",
+   "tool_calls": 6
+  },
+  {
+   "id": "r-iris",
+   "agent": "executive",
+   "status": "done",
+   "started_at": "2026-10-14T11:41:00Z",
+   "finished_at": "2026-10-14T11:46:00Z",
+   "tool_calls": 18
+  }
+ ],
+ "holdings": [
+  {
+   "symbol": "MAPL",
+   "name": "Example Maple Corp (made up)",
+   "account": "TFSA",
+   "currency": "USD",
+   "quantity": 20,
+   "book_value": 3000,
+   "last_price": 142.5,
+   "market_value": 2850,
+   "as_of": "2026-10-14"
+  },
+  {
+   "symbol": "BRCH.TO",
+   "name": "Example Birch Bank (made up)",
+   "account": "TFSA",
+   "currency": "CAD",
+   "quantity": 40,
+   "book_value": 3200,
+   "last_price": 91.2,
+   "market_value": 3648,
+   "as_of": "2026-10-14"
+  },
+  {
+   "symbol": "PINE",
+   "name": "Example Pine Index Fund (made up)",
+   "account": "RRSP",
+   "currency": "USD",
+   "quantity": 10,
+   "book_value": 4500,
+   "last_price": 512.3,
+   "market_value": 5123,
+   "as_of": "2026-10-14"
+  }
+ ],
+ "prices": [
+  {
+   "symbol": "MAPL",
+   "price_date": "2025-12-31",
+   "close": 150,
+   "currency": "USD",
+   "source": "example"
+  },
+  {
+   "symbol": "MAPL",
+   "price_date": "2026-06-30",
+   "close": 158,
+   "currency": "USD",
+   "source": "example"
+  },
+  {
+   "symbol": "MAPL",
+   "price_date": "2026-09-30",
+   "close": 147,
+   "currency": "USD",
+   "source": "example"
+  },
+  {
+   "symbol": "BRCH.TO",
+   "price_date": "2025-12-31",
+   "close": 80,
+   "currency": "CAD",
+   "source": "example"
+  },
+  {
+   "symbol": "BRCH.TO",
+   "price_date": "2026-06-30",
+   "close": 86,
+   "currency": "CAD",
+   "source": "example"
+  },
+  {
+   "symbol": "BRCH.TO",
+   "price_date": "2026-09-30",
+   "close": 89.5,
+   "currency": "CAD",
+   "source": "example"
+  },
+  {
+   "symbol": "PINE",
+   "price_date": "2025-12-31",
+   "close": 470,
+   "currency": "USD",
+   "source": "example"
+  },
+  {
+   "symbol": "PINE",
+   "price_date": "2026-06-30",
+   "close": 495,
+   "currency": "USD",
+   "source": "example"
+  },
+  {
+   "symbol": "PINE",
+   "price_date": "2026-09-30",
+   "close": 505,
+   "currency": "USD",
+   "source": "example"
+  }
+ ],
+ "timeline": [
+  {
+   "id": 17,
+   "run_id": "r-iris",
+   "created_at": "2026-10-14T11:41:00Z",
+   "agent": "executive",
+   "kind": "start",
+   "message": "Example: preparing the morning brief",
+   "data": {}
+  },
+  {
+   "id": 19,
+   "run_id": "r-iris",
+   "created_at": "2026-10-14T11:44:00Z",
+   "agent": "executive",
+   "kind": "report",
+   "message": "Example: sent 1 to Act now and 1 to Review",
+   "data": {
+    "why": "Example reason",
+    "act": 1,
+    "review": 1
+   }
+  },
+  {
+   "id": 21,
+   "run_id": "r-iris",
+   "created_at": "2026-10-14T11:46:00Z",
+   "agent": "executive",
+   "kind": "done",
+   "message": "Example: brief done",
+   "data": {}
+  }
+ ]
+}

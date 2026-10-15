@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+top="$(git rev-parse --show-toplevel)"
+"$top/scripts/check-secrets.sh" || exit 1
+# The published office page is built from office/src/; refuse a commit where the two disagree.
+if git diff --cached --name-only | grep -qE '^(office/|templates/|prompts/|docs/|supabase/|starter/|public/|instance\.json|scripts/|\.github/|LICENSE)'; then
+  if command -v node >/dev/null 2>&1; then
+    node "$top/scripts/build-office.mjs" --check || exit 1
+    # prompts/ and docs/agent-contract.md are rendered from templates/ with instance.json.
+    node "$top/scripts/render.mjs" --check || exit 1
+    # Nothing that names this copy may reach the public export (starter/, public/, office/src/, templates/supabase/).
+    # (only in a private copy: the public repo has no export script)
+    if [ -f "$top/scripts/export-public.mjs" ]; then node "$top/scripts/export-public.mjs" --check || exit 1; fi
+  else
+    echo "pre-commit: node not found, skipping the office build and template checks (CI still runs it)"
+  fi
+fi

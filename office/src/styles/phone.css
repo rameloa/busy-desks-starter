@@ -1,0 +1,37 @@
+/* ---------- phone ---------- */
+@media (max-width:760px){
+  /* The top bar on a phone: two tight rows. Name, status, trays and Replay on top; the five tabs share one line below. */
+  .hud{left:8px;right:8px;top:8px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px 8px;padding:6px 6px 6px 10px}
+  .brand{flex-direction:row;align-items:baseline;gap:8px;min-width:0;margin:0}
+  .hud h1{font-size:17px;white-space:nowrap}
+  .status{font-size:11.5px;min-width:0;overflow:hidden}
+  .hud-right{grid-column:2;grid-row:1;gap:6px;flex-wrap:nowrap}
+  .hbtn{min-height:36px;padding:0 9px;font-size:13px}
+  .hud-right .hbtn{min-height:34px}
+  .traycount{padding:0 4px;gap:3px}
+  .traycount span{padding:4px 6px}
+  #replay{padding:0 9px}
+  .traycount .lbl,.replay-txt{display:none}
+  .tabs-main{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;margin:0 -2px}
+  .tabs-main .hbtn{min-height:34px;padding:0 2px;gap:4px;font-size:12.5px;white-space:nowrap;letter-spacing:0}
+  .tab-long{display:none} .tab-short{display:inline}
+  #hudChain{min-width:16px;padding:2px 3px;font-size:11px;line-height:1;text-align:center;background:var(--hud-2);color:var(--hud-ink)}
+  .seg button{min-height:36px;padding:0 7px}
+  .chips{left:8px;right:0;padding-right:8px}
+  .hud .seg{display:none}
+  .zoom{display:none}
+  .caption{left:8px;right:8px;width:auto;bottom:66px;padding:9px 11px}
+  .caption .who{width:28px;height:28px}
+  .caption .txt{font-size:13px}
+  .staff{left:8px;right:0;bottom:8px;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;padding:2px 8px 6px 2px}
+  .staff::-webkit-scrollbar{display:none}
+  .app.open .staff{right:0}
+  .drawer{left:0;right:0;top:auto;bottom:0;width:auto;max-width:none;max-height:72%;animation:sheetin .35s ease}
+  /* pull the sheet down by its handle to close it */
+  .grab{display:block;position:absolute;left:0;right:56px;top:0;height:28px;z-index:1;touch-action:none;cursor:grab}
+  .grab::before{content:"";position:absolute;left:calc(50% + 28px);top:9px;width:44px;height:5px;margin-left:-22px;background:var(--muted);opacity:.45}
+  .dbody{padding-top:26px}
+  .xbtn{top:8px;right:8px}
+  @keyframes sheetin{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+}
+@media (prefers-reduced-motion:reduce){.status .dot,.ring2,.blinky i,.spot .av{animation:none!important}.drawer{animation:none}.zoom,.staff{transition:none}}

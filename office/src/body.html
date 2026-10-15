@@ -1,0 +1,152 @@
+
+<div class="app" id="app">
+  <div class="scene" id="scene" role="region" aria-label="Your office, seen from above. Drag to move, scroll or pinch to zoom, tap anyone or any room.">
+    <i class="cloud" aria-hidden="true" style="left:6%;top:30%"></i>
+    <i class="cloud" aria-hidden="true" style="left:74%;top:24%"></i>
+    <i class="cloud" aria-hidden="true" style="left:86%;top:72%"></i>
+    <i class="cloud" aria-hidden="true" style="left:10%;top:80%"></i>
+    <div class="cam" id="cam"><div class="world" id="world"></div></div>
+    <div class="sprites" id="sprites"><div class="sprcam" id="sprCam"></div></div>
+    <div class="ovl" id="ovl"></div>
+  </div>
+
+  <header class="hud">
+    <div class="brand">
+      <h1>Busy Desks</h1>
+      <span class="status" id="status" data-s="warn"><span class="dot"></span><span id="statusText">Connecting</span></span>
+    </div>
+    <nav class="tabs-main" aria-label="Main">
+      <button class="hbtn" type="button" data-open="floor" aria-pressed="true">Floor</button>
+      <button class="hbtn" type="button" data-open="stream" aria-pressed="false">Stream</button>
+      <button class="hbtn" type="button" data-open="chain" aria-pressed="false" aria-label="In the chain"><span class="tab-long">In the chain</span><span class="tab-short">Chain</span> <span id="hudChain">0</span></button>
+      <button class="hbtn" type="button" data-open="portfolio" aria-pressed="false">Portfolio</button>
+      <button class="hbtn" type="button" data-open="goals" aria-pressed="false">Goals</button>
+    </nav>
+    <div class="hud-right">
+      <button class="hbtn solid traycount" type="button" data-open="desk" id="trayBtn" aria-label="Open your desk">
+        <span class="c-act"><b id="hudAct">0</b><span class="lbl"> Act now</span></span>
+        <span class="c-review"><b id="hudReview">0</b><span class="lbl"> Review</span></span>
+        <span class="c-fyi"><b id="hudFyi">0</b><span class="lbl"> FYI</span></span>
+      </button>
+      <button class="hbtn solid" id="replay" type="button" disabled aria-label="Replay this morning">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"></path><path d="M3 4v5h5"></path></svg><span class="replay-txt">Replay this morning</span>
+      </button>
+      <div class="seg" role="group" aria-label="Animation speed">
+        <button type="button" data-speed="1" aria-pressed="true">1×</button>
+        <button type="button" data-speed="2" aria-pressed="false">2×</button>
+        <button type="button" data-speed="4" aria-pressed="false">4×</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="chips" id="chips" aria-label="Rooms"></nav>
+
+  <div class="zoom" role="group" aria-label="Zoom">
+    <button type="button" id="zoomIn" aria-label="Zoom in"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+    <span id="zoomPct">100%</span>
+    <button type="button" id="zoomOut" aria-label="Zoom out"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" aria-hidden="true"><path d="M5 12h14"></path></svg></button>
+    <button type="button" id="zoomFit" aria-label="Fit the whole office">Fit</button>
+  </div>
+
+  <div class="notice" id="notice" hidden></div>
+
+  <div class="caption" aria-live="polite">
+    <div class="who" id="capWho">·</div>
+    <div class="txt"><span id="capText">Opening the office</span><span class="when" id="capWhen"></span></div>
+  </div>
+
+  <ul class="staff" id="staff" aria-label="Who works here"></ul>
+
+  <aside class="drawer" id="drawer" hidden aria-label="Details">
+    <div class="grab" id="drawerGrab" aria-hidden="true"></div>
+    <button class="xbtn" type="button" id="drawerClose" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    <div class="dbody" id="dbody">
+      <section id="infoPanel" data-panel="info" hidden>
+        <div class="info-name" id="infoName">Tap anyone or any room</div>
+        <p class="info-role" id="infoRole">Tap an agent to meet them and call them in for a run. Workers carry what they find to their boss’s desk; Iris, the Executive, brings only what needs you to your trays.</p>
+        <dl class="facts" id="infoFacts" hidden></dl>
+        <div class="actions" id="infoActions" hidden></div>
+      </section>
+
+      <section data-panel="desk" id="deskPanel">
+        <div class="h2row"><h2>Your desk</h2><p class="hint" id="deskHint">What the Executive sent you</p></div>
+        <div class="trays">
+          <div class="tray" data-k="act"><div class="tray-h"><span>Act now</span><span class="n" id="n-act">0</span></div><div class="cards" id="t-act"></div></div>
+          <div class="tray" data-k="review"><div class="tray-h"><span>Review</span><span class="n" id="n-review">0</span></div><div class="cards" id="t-review"></div></div>
+          <div class="tray" data-k="fyi"><div class="tray-h"><span>FYI</span><span class="n" id="n-fyi">0</span></div><div class="cards" id="t-fyi"></div></div>
+        </div>
+        <div class="chain" id="chainBox">
+          <div class="chain-h"><span>Still in the chain</span><span class="n" id="n-chain">0</span></div>
+          <p class="hint">Filed by a worker, waiting for its lead or the Executive to review. These reach your desk in the next brief.</p>
+          <ul class="chain-list" id="chain"></ul>
+        </div>
+      </section>
+
+      <section data-panel="stream" hidden>
+        <div class="h2row"><h2>Event stream</h2><p class="hint" id="logHint">Newest first</p></div>
+        <ol class="log" id="log"></ol>
+      </section>
+
+      <section id="portfolioPanel" data-panel="portfolio" aria-label="Portfolio" hidden>
+        <div class="h2row"><h2>Portfolio</h2><p class="hint" id="pfHint">Your holdings, from the Investments floor</p></div>
+        <div class="pf-board" id="pfBoard">
+          <div class="pf-tape"><span id="pfTape">My book</span><span id="pfAsOf"></span></div>
+          <div class="pf-curs" id="pfCurs"></div>
+        </div>
+        <div class="tabs seg" role="tablist" aria-label="Account">
+          <button type="button" data-acct="all" aria-pressed="true">All</button>
+          <button type="button" data-acct="TFSA" aria-pressed="false">TFSA</button>
+          <button type="button" data-acct="RRSP" aria-pressed="false">RRSP</button>
+        </div>
+        <ul class="pf-list" id="pfList"></ul>
+        <p class="pf-foot" id="pfFoot">Gain is market value minus what you paid (book value), each in its own currency. Dividends aren't counted. Trend lines use the closes in your price history: a backfill, then the portfolio agent's daily closes. Research, not advice: your call.</p>
+      </section>
+
+      <section id="settingsPanel" data-panel="goals" aria-label="Goals and settings" hidden>
+        <div class="h2row"><h2>Goals &amp; settings</h2><p class="hint">Only you change these. Agents read them.</p></div>
+        <div class="tabs seg" role="tablist">
+          <button type="button" role="tab" data-tab="goals" aria-pressed="true">Goals</button>
+          <button type="button" role="tab" data-tab="budgets" aria-pressed="false">Agent budgets</button>
+        </div>
+        <div id="tab-goals">
+          <ul class="goals" id="goals"></ul>
+          <button class="btn" id="addGoal" type="button">Add a goal</button>
+          <form class="gform" id="goalForm" hidden novalidate>
+            <div class="gf-h" id="gfTitle">New goal</div>
+            <label>Type
+              <select name="kind">
+                <option value="spending">Spending cap</option>
+                <option value="saving">Saving or investing</option>
+                <option value="portfolio">Portfolio</option>
+                <option value="bills">Bills</option>
+                <option value="other">Other</option>
+              </select></label>
+            <label data-f="title">Goal <input name="title" maxlength="120" placeholder="e.g. Keep food under $600 a month"></label>
+            <div class="gf-row">
+              <label data-f="amount">Amount ($) <input name="amount" inputmode="decimal" placeholder="600"></label>
+              <label data-f="pct">Percent (%) <input name="pct" inputmode="decimal" placeholder="70"></label>
+            </div>
+            <div class="gf-row">
+              <label data-f="period">Every <select name="period">
+                <option value="month">Month</option><option value="quarter">Quarter</option><option value="year">Year</option>
+                <option value="by_date">By a date</option><option value="ongoing">Ongoing</option></select></label>
+              <label data-f="date">By <input name="target_date" type="date"></label>
+            </div>
+            <label data-f="category"><span id="catLabel">Category</span> <input name="category" maxlength="60" placeholder="Leave blank for all spending"></label>
+            <label data-f="note">Note <input name="note" maxlength="300" placeholder="Anything Iris should know"></label>
+            <p class="hint" id="gfWatch"></p>
+            <div class="row">
+              <button class="btn" type="submit" id="gfSave">Save goal</button>
+              <button class="btn ghost" type="button" id="gfCancel">Cancel</button>
+            </div>
+            <div class="msg" id="gfMsg"></div>
+          </form>
+        </div>
+        <div id="tab-budgets" hidden>
+          <p class="hint">Monthly cap per agent at API prices. A Controller agent can flag anyone near or over it.</p>
+          <ul class="budgets" id="budgets"></ul>
+        </div>
+      </section>
+    </div>
+  </aside>
+</div>

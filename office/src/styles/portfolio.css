@@ -1,0 +1,40 @@
+/* ---------- Portfolio: the trading-floor board in the side panel ----------
+   The board is always on the dark HUD green, so its up/down colours are fixed brights; rows on the page surface use --ok/--danger. */
+:root{--tape-up:#5FD39A;--tape-down:#FF8A7A}
+.pf-board{background:var(--hud);color:var(--hud-ink);box-shadow:0 0 0 2px var(--hud-edge),0 4px 0 var(--hud-edge);padding:10px 12px 12px;margin-bottom:14px;display:grid;gap:10px}
+.pf-tape{display:flex;justify-content:space-between;gap:8px;font:600 11.5px/1 var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--sel)}
+.pf-tape span:last-child{color:var(--hud-muted)}
+.pf-curs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.pf-cur{display:grid;gap:2px;min-width:0;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.pf-cur .cc{font:600 12px/1 var(--display);letter-spacing:.1em;color:var(--hud-muted)}
+.pf-cur .val{font-size:21px;font-weight:600;line-height:1.15}
+.pf-cur .chg{font-size:13.5px;font-weight:600}
+.pf-cur .cost{font-size:11.5px;color:var(--hud-muted)}
+.pf-board .up{color:var(--tape-up)} .pf-board .down{color:var(--tape-down)}
+.pf-list{list-style:none;margin:0;padding:0}
+.pf-list li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:11px 0;border-bottom:1px solid var(--surface-2)}
+.pf-head{min-width:0}
+.pf-sym{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font:700 18px/1.1 var(--display)}
+.pf-name{font-size:12.5px;color:var(--muted);overflow-wrap:anywhere}
+.pf-spark{text-align:right;font:600 11.5px/1.2 var(--mono);font-variant-numeric:tabular-nums}
+.pf-spark svg{display:block;width:116px;height:40px;margin-left:auto}
+.pf-spark .lbl{color:var(--muted);font-family:var(--body);font-weight:700;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase}
+.pf-nums{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px 8px;margin:4px 0 0;font-variant-numeric:tabular-nums}
+.pf-nums div{min-width:0}
+.pf-nums dt{font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.pf-nums dd{margin:0;font:600 13px/1.3 var(--mono);overflow-wrap:anywhere}
+.g-up{color:var(--ok)} .g-down{color:var(--danger)}
+.pf-pill{font:700 12px/1 var(--mono);padding:4px 6px;box-shadow:inset 0 0 0 1.5px currentColor}
+.pf-empty{padding:14px;background:var(--surface-2);font-size:14px}
+.pf-foot{font-size:12px;color:var(--muted);margin:10px 0 0;line-height:1.45}
+.pf-foot a{color:var(--accent)}
+@media (max-width:420px){ .pf-nums{grid-template-columns:repeat(2,minmax(0,1fr))} }
+/* the LED ticker tape on the Investments wall */
+.ticker .f{justify-content:flex-start!important}
+.ticker .f span{display:inline-block;padding-left:100%;animation:tape 45s linear infinite}
+.ticker .f span b{font-weight:700}
+.ticker .tk-s{color:#F5F3EE} .ticker .tk-u{color:#5BE39A} .ticker .tk-d{color:#FF6B5E} .ticker .tk-h{color:#F2C230}
+@keyframes tape{to{transform:translateX(-100%)}}
+.lite .ticker .f span{animation:none;padding-left:4px}
+@media (prefers-reduced-motion: reduce){ .ticker .f span{animation:none;padding-left:4px} }
+
